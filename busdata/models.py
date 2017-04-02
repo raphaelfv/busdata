@@ -43,6 +43,7 @@ class Registro(models.Model):
     consorcio = models.ForeignKey('Consorcio')
     ordem = models.CharField(max_length=10,blank=True, null=True)
     local = models.CharField(max_length=200,blank=True, null=True)
+    dataInclusao = models.DateField( auto_now_add=True)
 
     # def natural_key(self):
     #     return (self.id, self.nome_levan)

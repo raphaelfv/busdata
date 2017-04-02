@@ -52,11 +52,12 @@ MIDDLEWARE_CLASSES = [
 ]
 
 ROOT_URLCONF = 'busdata.urls'
+STATIC_DIR = os.path.join(os.path.dirname(__file__), '../')  #modificar caso mude o padrao de pastas
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [STATIC_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,5 +123,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    # ("js","js"),
+    # ("img","img"),
+    # ("css","css"),
+     ("uploads","uploads"),
+)
