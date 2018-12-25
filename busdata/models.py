@@ -67,7 +67,10 @@ class Autor(models.Model):
     url = models.CharField(max_length=100,blank=True, null=True) # URL do site
 
     def __str__(self):
-      return self.nome.encode('utf-8')+' <'+self.url+'>'
+        if self.url:
+            return self.nome.encode('utf-8')+' <'+self.url+'>'
+        return self.nome.encode('utf-8')
+
 
     class Meta:
         managed = True
