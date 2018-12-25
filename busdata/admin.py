@@ -1,5 +1,10 @@
-# from busdata.models import *
-# a = Consorcio(nome='Intermunicipal')
-# a.save()
-# a = Consorcio(nome='BRT',cor='#0000ff')
-# a.save()
+# -*- coding: utf-8 -*-
+from busdata.first_load import criarCarrocerias,criarConsorcios,criarEmpresas,criarFabricantes
+
+from busdata.settings import DEBUG
+
+if DEBUG:
+    criarEmpresas()
+    criarConsorcios()
+    criarFabricantes()
+    criarCarrocerias()
