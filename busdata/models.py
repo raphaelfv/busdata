@@ -90,6 +90,7 @@ class Registro(models.Model):
     fonte = models.CharField(max_length=200,blank=True) # URL da fonte
     dataInclusao = models.DateField( auto_now_add=True)
     #TODO - last modified
+    #TODO - user que criou o registro != autor
 
     def __str__(self):
       return self.foto.encode('utf-8')

@@ -1,12 +1,22 @@
 {% extends 'html/base.html' %}
 
 {% block content %}
-    {% for reg in registros %}
-        <div class="post">
-            <div class="date">
-                {{ reg.dataInclusao }}
+    <div class="container">
+    <div class="row">
+        {% for reg in registros %}
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="https://onibusbrasil.com/storage/i/2019/2/13/p/6918c0d4b1e53a0a7e227ae437e1dd75.jpg"
+                         alt="Imagem">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Autor: {{ reg.autor|default:'-' }}</li>
+                        <li class="list-group-item">Fonte: {{ reg.fonte|default:'-' }}</li>
+                        <li class="list-group-item">Ano: {{ reg.ano|default:'-' }}</li>
+                        <li class="list-group-item">Linha: {{ reg.linha|default:'-' }}</li>
+                    </ul>
+                </div>
             </div>
-            <h1><a href="">{{ reg.foto }}</a></h1>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
+    </div>
 {% endblock %}
