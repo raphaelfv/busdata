@@ -1,22 +1,65 @@
 {% extends 'html/base.html' %}
 
+{% block title %}Busdata - Lista de registros{% endblock %}
+
+{% block extra_head %}
+    <script src="/static/js/first.js"></script>
+    <link rel="stylesheet" href="/static/css/first.css"/>
+{% endblock %}
+
 {% block content %}
     <div class="container">
-    <div class="row">
-        {% for reg in registros %}
-            <div class="col">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="https://onibusbrasil.com/storage/i/2019/2/13/p/6918c0d4b1e53a0a7e227ae437e1dd75.jpg"
-                         alt="Imagem">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Autor: {{ reg.autor|default:'-' }}</li>
-                        <li class="list-group-item">Fonte: {{ reg.fonte|default:'-' }}</li>
-                        <li class="list-group-item">Ano: {{ reg.ano|default:'-' }}</li>
-                        <li class="list-group-item">Linha: {{ reg.linha|default:'-' }}</li>
-                    </ul>
+        <div class="text-center">
+            <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#filter_block_body"
+                    aria-expanded="true" aria-controls="filter_block_body">
+                <i class="fas fa-filter"></i> Filtros
+            </button>
+        </div>
+        <div class="well collapse multi-collapse" id="filter_block_body">
+            <div class="filter_block">
+                <div class="row text-center ">
+                    <div class="col-sm-4"><label>Filtrar por Linha</label></div>
+                    <div class="col-sm-4"><label>Filtrar por Empresa</label></div>
+                    <div class="col-sm-4"><label>Filtrar por Consórcio</label></div>
+                </div>
+                <div class="row text-center filter_block">
+                    <div class="col-sm-4"><input></div>
+                    <div class="col-sm-4"><input></div>
+                    <div class="col-sm-4"><input></div>
                 </div>
             </div>
-        {% endfor %}
+            <div class="filter_block">
+                <div class="row text-center">
+                    <div class="col-sm-6"><label>Filtrar por Carroceria</label> <input></div>
+                    <div class="col-sm-6"><label>Filtrar por Usuário</label> <input></div>
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <p class="text-center">
+                    <a href="/cadastro/registro" class="btn btn-info btn-lg"><i class="fas fa-plus-square"></i> Novo registro</a>
+                </p>
+            </div>
+            {% for reg in registros %}
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <div class="img_block">
+                            <img class="card-img-top" alt="Imagem"
+                                 src="https://onibusbrasil.com/storage/i/2019/2/13/p/6918c0d4b1e53a0a7e227ae437e1dd75.jpg">
+                            <button class="btn"><i class="far fa-edit"></i> Editar</button>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Autor: {{ reg.autor|default:'-' }}</li>
+                            <li class="list-group-item">Fonte: {{ reg.fonte|default:'-' }}</li>
+                            <li class="list-group-item">Ano: {{ reg.ano|default:'-' }}</li>
+                            <li class="list-group-item">Linha: {{ reg.linha|default:'-' }}</li>
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
