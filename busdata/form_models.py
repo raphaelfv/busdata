@@ -23,6 +23,6 @@ class EmpresaForm(ModelForm):
     def clean_nome(self): #validacao de erro: clean_nomeAtributo
         nome = self.cleaned_data['nome']
         if Empresa.objects.filter(nome=nome).exists:
-            print 'A empresa %s já existe' % nome
+            print('A empresa %s já existe' % nome)
             raise forms.ValidationError("Esta empresa já esta cadastrada")
         return nome

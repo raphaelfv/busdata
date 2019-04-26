@@ -1,0 +1,35 @@
+{% extends 'html/base.html' %}
+{% load custom_template_tags %}
+
+{% block title %}Busdata - Lista de registros{% endblock %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready( function () {
+            $('#table_tabelao').DataTable();
+        } );
+    </script>
+{% endblock %}
+
+{% block content %}
+    <table id="table_tabelao" class="display" style="width:100%">
+        <thead>
+            <tr>
+                {% for field in registros_keys.values %}
+                    <th>{{ field }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for registro in registros %}
+                <tr>
+                    {% for field in registros_keys %}
+                        <td>{{registro|get_item:field|default:"-"}}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

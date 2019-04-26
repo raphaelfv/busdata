@@ -1,5 +1,6 @@
 from busdata.models import *
 from busdata.form_models import *
+from busdata.utils import *
 
 from django.apps import apps
 from django.contrib import messages
@@ -30,7 +31,22 @@ def cadastrarFoto(request,registroID=None):
             messages.success(request,"Registro salvo com sucesso")
             return redirect('/cadastro/registro/' + str(novoRegistro.id))
         else:
-            print '[views 33] Ocorreu um erro no cadastro',formRegistro.errors
+            print('[views 33] Ocorreu um erro no cadastro',formRegistro.errors)
         mensagem_erro = 'Ocorreu um erro no cadastro'
         messages.error(request,mensagem_erro)
     return render(request, 'html/cadastro.html',{'formRegistro': formRegistro,})
+
+def tabelao(request):
+
+    registrosQS = Registro.objects.all()
+    registrosDict = getDictFromQueryset(registrosQS)
+    # print("+++++++++++++registros ",registros )
+    registros_keys = {f.column: f.verbose_name.capitalize() for f in Registro._meta.get_fields()}
+    # print("+++++++++++++registros_keys",registros_keys)
+    for f in Registro._meta.get_fields():
+        print("+++++++++++++f", f.column)
+
+    return render(request, 'html/tabelao.html',
+                  {'registros_keys': registros_keys, 'registros': registrosDict, }
+                  )
+

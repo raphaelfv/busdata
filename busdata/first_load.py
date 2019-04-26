@@ -10,7 +10,7 @@ def criarEmpresas():
             if nome in empresasInativasList:
                 novaEmpresa.is_active = False
             novaEmpresa.save()
-            print "[first_load @ criarEmpresas] Nova empresa criada: ",novaEmpresa
+            print("[first_load @ criarEmpresas] Nova empresa criada: ",novaEmpresa)
 
 def criarConsorcios():
     dictConsorciosList = []
@@ -26,7 +26,7 @@ def criarConsorcios():
             if 'cor' in d:
                 novoObj.cor = d['cor']
             novoObj.save()
-            print "[first_load @ criarConsorcios] Novo consorcio criado: ",novoObj
+            print("[first_load @ criarConsorcios] Novo consorcio criado: ",novoObj)
 
 def criarFabricantes():
     nomesList = ['Neobus','Caio','Marcopolo','Comil','Mascarello',]
@@ -34,7 +34,7 @@ def criarFabricantes():
         if not Fabricante.objects.filter(nome=nome).exists():
             novoObj = Fabricante(nome=nome)
             novoObj.save()
-            print "[first_load @ criarFabricantes] Nova fabricante criada: ", novoObj
+            print("[first_load @ criarFabricantes] Nova fabricante criada: ", novoObj)
 
 def criarCarrocerias():
     dictCarroceriasList = []
@@ -66,7 +66,7 @@ def criarCarrocerias():
             if fabricanteObj:
                 novoObj.fabricante = fabricanteObj.first()
             else:
-                print "- ! - [first_load @ criarCarrocerias] Erro: Carroceria não foi criada: ", d
+                print("- ! - [first_load @ criarCarrocerias] Erro: Carroceria não foi criada: ", d)
                 continue
             novoObj.save()
-            print "[first_load @ criarCarrocerias] Nova carroceria criada: ",novoObj
+            print("[first_load @ criarCarrocerias] Nova carroceria criada: ",novoObj)
